@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Jim'a version
+
 # Project: PiShrink
 # Description: PiShrink is a bash script that automatically shrink a pi image that will then resize to the max size of the SD card on boot.
 # Link: https://github.com/Drewsif/PiShrink
