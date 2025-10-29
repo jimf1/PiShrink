@@ -34,6 +34,8 @@ function cleanup() {
 		local old_owner=$(stat -c %u:%g "$src")
 		chown "$old_owner" "$LOGFILE"
 	fi
+  #Cleanup the fixUUID part
+  fixUUIDCleanup
 
 }
 
@@ -202,8 +204,8 @@ function fixPARTUUID()
     i=0
     numparts=0
 
-  # set cleanup action
-  trap fixUUIDCleanup EXIT
+  # cleanup
+  fixUUIDCleanup
 
     # mount image to block device
     #echo Mounting image $1
