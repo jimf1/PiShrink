@@ -46,6 +46,9 @@ function fixPARTUUID()
     i=0
     numparts=0
 
+    # set cleanup action
+    trap fixUUIDCleanup EXIT
+
     # mount image to block device
     #echo Mounting image $1
     loopimg=$(losetup -Pf --show $1)
@@ -128,10 +131,7 @@ function fixPARTUUID()
         fi
     fi
     #cleanup
-    losetup -d $loopimg
-    umount ${mountprefix}Check1
-    umount ${mountprefix}Check2
-    rmdir ${mountprefix}*
+    # fixUUIDCleanup
 
     info "Image check complete"
     if [ $3 = "DEBUG" ]
@@ -154,7 +154,17 @@ function fixPARTUUID()
     return $returncode
 }
 
-#Mainline
+fixUUIDCleanup () {
+    #cleanup
+    umount ${mountprefix}Check1 >&/dev/null
+    umount ${mountprefix}Check2 >&/dev/null
+    rmdir ${mountprefix}* >&/dev/null
+    losetup -d $loopimg >&/dev/null
+  
+}
+
+# ************************ Mainline **********************
+
 img=$1
 SCRIPTNAME=$(basename "$0")
 if  [ $EUID -ne 0 ] 
