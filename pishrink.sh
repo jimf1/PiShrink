@@ -239,7 +239,8 @@ function fixPARTUUID()
     mkdir ${mountprefix}Check2
     mount "/dev/$devpart1" "${mountprefix}Check1"
     mount "/dev/$devpart2" "${mountprefix}Check2"
-  
+    checkfile1="${mountprefix}Check1/cmdline.txt"
+    checkfile2="${mountprefix}Check2/etc/fstab"
     # echo "Checkfile1 is " $checkfile1
     # echo "Checkfile2 is " $checkfile2
     if [[ ! -f "$checkfile1" ||  ! -f "$checkfile2" ]];  # files need to be present
