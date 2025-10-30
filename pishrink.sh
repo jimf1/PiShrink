@@ -2,9 +2,9 @@
 
 # Project: PiShrink
 # Description: PiShrink is a bash script that automatically shrink a pi image that will then resize to the max size of the SD card on boot.
-# Link: https://github.com/Drewsif/PiShrink
+# Link: https://github.com/jimf1/PiShrink
 
-version="v24.10.23"
+version="v24.10.23 jimf1 fork"
 
 CURRENT_DIR="$(pwd)"
 SCRIPTNAME="${0##*/}"
@@ -343,7 +343,7 @@ EOM
 
 should_skip_autoexpand=false
 debug=false
-update_check=true
+update_check=false
 repair=false
 parallel=false
 verbose=false
@@ -372,7 +372,7 @@ if [ "$debug" = true ]; then
 	exec 2> >(stdbuf -i0 -o0 -e0 tee -a "$LOGFILE" >&2)
 fi
 
-echo -e "PiShrink $version - https://github.com/Drewsif/PiShrink\n"
+echo -e "PiShrink $version - https://github.com/jimf1/PiShrink\n"
 
 # Try and check for updates
 if $update_check; then
